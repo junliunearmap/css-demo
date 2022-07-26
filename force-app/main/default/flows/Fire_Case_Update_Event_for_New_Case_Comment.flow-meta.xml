@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>alert</name>
+        <label>alert</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <actionName>zqu__Quote__c.Alert_to_Sales_Ops</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Fire_Case_Update_Event</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <apiVersion>55.0</apiVersion>
     <environments>Default</environments>
     <interviewLabel>Fire Case Update Event for New Case Comment {!$Flow.CurrentDateTime}</interviewLabel>
@@ -27,7 +45,7 @@
         <name>Fire_Case_Update_Event</name>
         <label>Fire Case Update Event</label>
         <locationX>176</locationX>
-        <locationY>335</locationY>
+        <locationY>455</locationY>
         <inputAssignments>
             <field>Record_Id__c</field>
             <value>
@@ -53,11 +71,11 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Fire_Case_Update_Event</targetReference>
+            <targetReference>alert</targetReference>
         </connector>
         <object>CaseComment</object>
         <recordTriggerType>Create</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Draft</status>
 </Flow>
